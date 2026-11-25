@@ -1,0 +1,19 @@
+[project]
+name = "btc-agent"
+version = "0.1.0"
+description = "Rules-based Bitcoin trend agent: analysis, honest backtests, paper trading, guarded live trading"
+requires-python = ">=3.11"
+dependencies = ["pandas>=2.0", "numpy>=1.26", "ccxt>=4.0"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+btc-agent = "btc_agent.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["btc_agent"]

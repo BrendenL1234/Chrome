@@ -1,0 +1,27 @@
+# Copy to config.toml and edit. API keys never go in this file: they are read
+# from the environment variables BTC_AGENT_API_KEY / BTC_AGENT_API_SECRET.
+
+mode = "paper"            # "paper" (simulated fills) | "validate" (exchange checks the order, nothing is placed) | "live"
+exchange = "kraken"       # any ccxt exchange id
+symbol = "BTC/USD"        # e.g. "BTC/CAD" on Kraken
+state_dir = "state"
+
+[strategy]
+name = "sma_trend"        # buy_hold | sma_trend | ma_cross | vol_target_trend
+sma_days = 200
+buffer = 0.02             # hysteresis band around the average, cuts whipsaw trades
+fast_days = 20            # ma_cross only
+slow_days = 100           # ma_cross only
+target_vol = 0.40         # vol_target_trend only (annualised)
+
+[risk]
+max_allocation = 0.50     # never hold more than this share of the account in BTC
+rebalance_band = 0.05     # ignore drifts smaller than this share of the account
+max_order_quote = 250.0   # hard cap per order, in quote currency
+min_order_quote = 10.0
+max_orders_per_day = 1
+
+[paper]
+starting_cash = 1000.0
+fee = 0.004               # 0.40% - Kraken Pro's entry taker tier is higher, check your tier
+slippage = 0.001
